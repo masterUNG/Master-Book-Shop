@@ -2,8 +2,8 @@ package appewtc.masterung.mastershopbook;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
                 JSONArray jsonArray = new JSONArray(s);
 
-                for (int i=0;i<jsonArray.length();i++) {
+                for (int i = 0; i < jsonArray.length(); i++) {
 
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     if (userString.equals(jsonObject.getString("User"))) {
@@ -83,6 +83,18 @@ public class MainActivity extends AppCompatActivity {
                     MyAlert myAlert = new MyAlert();
                     myAlert.myDialog(MainActivity.this, "ไม่มี User นี่",
                             "ไม่มี " + userString + " ในฐานข้อมูลของเรา");
+                } else if (passwordString.equals(truePasswordString)) {
+
+                    Intent intent = new Intent(MainActivity.this, ShowBookActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                } else {
+
+                    MyAlert myAlert = new MyAlert();
+                    myAlert.myDialog(MainActivity.this, "Password False",
+                            "Please Try Again Password False");
+
                 }
 
             } catch (Exception e) {
@@ -90,11 +102,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-
         }   // onPost
 
     }   // class
-
 
 
     public void clickSignIn(View view) {
